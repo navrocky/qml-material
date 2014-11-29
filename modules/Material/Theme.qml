@@ -101,23 +101,28 @@ Object {
 
    // Dynamic loading of fonts
    function getFont(style) {
-	   var fontStyles = ["Black", "BlackItalic", "Bold", "BoldItalic", "Italic", "Light", "LightItalic", "Medium", "MediumItalic", "Regular", "Thin", "ThinItalic", "CondensedBold", "CondensedBoldItalic", "CondensedItalic", "CondensedLight", "CondensedLightItalic", "CondensedRegular", "awesome"];
-	   if (fontStyles.indexOf(style) == -1) {
-		   throw "Wrong style."
-	   }
-	   var source;
-	   if (style == "awesome") {
-		   source = "fonts/fontawesome/FontAwesome.otf";
-	   }
-	   else if (style[0] == "C") {
-		   source = "fonts/roboto/RobotoCondensed-" + style.slice(9) + ".ttf";
-	   }
-	   else {
-		   source = "fonts/roboto/Roboto-" + style + ".ttf";
-	   }
-	   var initiatorString = "import QtQuick 2.0; FontLoader { source: \"" + source + "\"}";
-	   var font = Qt.createQmlObject(initiatorString, theme, "dynamicFont");
-	   return font.name;
+   	if (typeof(eval(style)) != "undefined") {
+		return eval(style).name; 
+	}
+	else {
+		var fontStyles = ["Black", "BlackItalic", "Bold", "BoldItalic", "Italic", "Light", "LightItalic", "Medium", "MediumItalic", "Regular", "Thin", "ThinItalic", "CondensedBold", "CondensedBoldItalic", "CondensedItalic", "CondensedLight", "CondensedLightItalic", "CondensedRegular", "awesome"];
+	   	if (fontStyles.indexOf(style) == -1) {
+			throw "Wrong style."
+	   	}
+	   	var source;
+	   	if (style == "awesome") {
+			source = "fonts/fontawesome/FontAwesome.otf";
+	   	}
+	   	else if (style[0] == "C") {
+			source = "fonts/roboto/RobotoCondensed-" + style.slice(9) + ".ttf";
+	   	}
+	   	else {
+			source = "fonts/roboto/Roboto-" + style + ".ttf";
+	   	}
+	   	var initiatorString = "import QtQuick 2.0; FontLoader { id: " + style + "; source: \"" + source + "\"}";
+	   	var font = Qt.createQmlObject(initiatorString, theme, "dynamicFont");
+	   	return font.name;
+   	}
    }
     /*FontLoader {
         source: Qt.resolvedUrl("fonts/roboto/Roboto-Regular.ttf")
