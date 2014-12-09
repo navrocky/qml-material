@@ -108,6 +108,7 @@ Item {
                 return
             page.dynamic = true
         }
+        page.pageStack = pageStack
 
         return page
     }
