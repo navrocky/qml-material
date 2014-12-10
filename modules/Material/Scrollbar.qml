@@ -16,6 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.0
+import Material 0.1
 
 Item {
     id: root
@@ -36,8 +37,8 @@ Item {
 
     property int orientation: Qt.Vertical
     property int thickness: 5
-    width: thickness
-    height: thickness
+    width: units.dp(thickness)
+    height: units.dp(thickness)
 
     property bool moving: flickableItem.moving
 

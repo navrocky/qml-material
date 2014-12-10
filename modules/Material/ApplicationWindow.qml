@@ -89,8 +89,8 @@ Window {
 
     property bool clientSideDecorations: false
 
-    width: units.dp(800)
-    height: units.dp(600)
+//    width: units.dp(800)
+//    height: units.dp(600)
 
     on__PixelDensityChanged: units.__pixelDensity = __pixelDensity
 
